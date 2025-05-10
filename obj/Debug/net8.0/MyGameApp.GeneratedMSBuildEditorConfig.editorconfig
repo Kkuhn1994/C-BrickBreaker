@@ -15,12 +15,12 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MyGameApp
-build_property.ProjectDir = /home/kkuhn/Desktop/portfolio/MyGameApp/
+build_property.ProjectDir = /home/kkuhn/Desktop/BrickBreaker/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 
-[/home/kkuhn/Desktop/portfolio/MyGameApp/App.axaml]
+[/home/kkuhn/Desktop/BrickBreaker/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/kkuhn/Desktop/portfolio/MyGameApp/MainWindow.axaml]
+[/home/kkuhn/Desktop/BrickBreaker/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/kkuhn/Desktop/portfolio/MyGameApp/MyGameApp.csproj": {}
+    "/home/kkuhn/Desktop/BrickBreaker/MyGameApp.csproj": {}
   },
   "projects": {
-    "/home/kkuhn/Desktop/portfolio/MyGameApp/MyGameApp.csproj": {
+    "/home/kkuhn/Desktop/BrickBreaker/MyGameApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/kkuhn/Desktop/portfolio/MyGameApp/MyGameApp.csproj",
+        "projectUniqueName": "/home/kkuhn/Desktop/BrickBreaker/MyGameApp.csproj",
         "projectName": "MyGameApp",
-        "projectPath": "/home/kkuhn/Desktop/portfolio/MyGameApp/MyGameApp.csproj",
+        "projectPath": "/home/kkuhn/Desktop/BrickBreaker/MyGameApp.csproj",
         "packagesPath": "/home/kkuhn/.nuget/packages/",
-        "outputPath": "/home/kkuhn/Desktop/portfolio/MyGameApp/obj/",
+        "outputPath": "/home/kkuhn/Desktop/BrickBreaker/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/kkuhn/.nuget/NuGet/NuGet.Config"

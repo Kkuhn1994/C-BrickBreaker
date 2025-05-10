@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "78WgOsItLQg=",
+  "dgSpecHash": "lKcDab8fYHw=",
   "success": true,
-  "projectFilePath": "/home/kkuhn/Desktop/portfolio/MyGameApp/MyGameApp.csproj",
+  "projectFilePath": "/home/kkuhn/Desktop/BrickBreaker/MyGameApp.csproj",
   "expectedPackageFiles": [
     "/home/kkuhn/.nuget/packages/avalonia/11.2.7/avalonia.11.2.7.nupkg.sha512",
     "/home/kkuhn/.nuget/packages/avalonia.angle.windows.natives/2.1.22045.20230930/avalonia.angle.windows.natives.2.1.22045.20230930.nupkg.sha512",

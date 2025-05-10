@@ -9,38 +9,55 @@ namespace MyGameApp
     public class Ball
     {
         public Ellipse BallEllipse { get; private set; }
+        private Player player;
         private double speedX;
         private double speedY;
         private double windowHeight;
         private double windowWidth;
-        private bool touchPlayer = true;
 
-        public Ball(Ellipse ellipse, double _windowHeight, double _windowWidth)
+        public Ball(Ellipse ellipse, double _windowHeight, double _windowWidth, Player _player)
         {
             BallEllipse = ellipse;
             windowHeight = _windowHeight;
             windowWidth = _windowWidth;
+            player = _player;
             speedX = 0;
             speedY = 0;
         }
 
         public void startBall() {
+            player.TouchPlayer = false;
             speedY = 10;
         }
 
-        public async Task Move(Player player)
+        public async Task Move()
         {
             while (true)
             {
-                Console.WriteLine(Canvas.GetBottom(BallEllipse));
-                if(Canvas.GetBottom(BallEllipse) >= windowHeight | playerHitsBall(player))
+                if(Canvas.GetBottom(BallEllipse) >= windowHeight)
                 {
+                    player.TouchPlayer = false;
+                    Console.WriteLine("Top Collision");
                     changeDirection("top_or_bottom");
                 }
                 if(Canvas.GetLeft(BallEllipse) >= windowWidth | Canvas.GetLeft(BallEllipse) <= 0)
                 {
-                    changeDirection("top_or_bottom");
+                    Console.WriteLine("Wall Collision");
+                    changeDirection("");
                 }
+                if(player.TouchPlayer == true)
+                {                    
+                    speedX = player.Movement;
+                    Console.WriteLine("Player touch");
+                }
+                else if(playerHitsBall(player))
+                {
+                    Console.WriteLine("Player Collision");
+                    changeDirection("top_or_bottom");
+                    speedX += player.Movement;
+                    Console.WriteLine(speedX);
+                }
+
                 await Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() =>
                 {
                     double newTop = Canvas.GetBottom(BallEllipse) + speedY;
@@ -48,20 +65,14 @@ namespace MyGameApp
                     Canvas.SetBottom(BallEllipse, newTop);
                     Canvas.SetLeft(BallEllipse, newLeft);
                 });
-
-
-                // Verzögerung für den nächsten Update-Zyklus
-                await Task.Delay(5);  // Teste mit 5ms oder 10ms
+                await Task.Delay(5);
             }
         }
 
-        public bool playerHitsBall(Player player) {
-            double ballPositionX = Canvas.GetLeft(BallEllipse);
 
-            Console.WriteLine(player.BoundaryLeft);
-            Console.WriteLine(player.BoundaryRight);
-                        Console.WriteLine(player.BoundaryRight);
-            Console.WriteLine(player.BoundaryLeft);
+        public bool playerHitsBall(Player player) {
+
+            double ballPositionX = Canvas.GetLeft(BallEllipse);
             if(Canvas.GetBottom(BallEllipse) <= 10 &&
                 (ballPositionX >= player.BoundaryLeft && ballPositionX <= player.BoundaryRight))
             {
