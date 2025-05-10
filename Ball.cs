@@ -28,12 +28,12 @@ namespace MyGameApp
             speedY = 10;
         }
 
-        public async Task Move()
+        public async Task Move(Player player)
         {
             while (true)
             {
                 Console.WriteLine(Canvas.GetBottom(BallEllipse));
-                if(Canvas.GetBottom(BallEllipse) >= windowHeight | Canvas.GetBottom(BallEllipse) <= 0)
+                if(Canvas.GetBottom(BallEllipse) >= windowHeight | playerHitsBall(player))
                 {
                     changeDirection("top_or_bottom");
                 }
@@ -55,14 +55,28 @@ namespace MyGameApp
             }
         }
 
+        public bool playerHitsBall(Player player) {
+            double ballPositionX = Canvas.GetLeft(BallEllipse);
+
+            Console.WriteLine(player.BoundaryLeft);
+            Console.WriteLine(player.BoundaryRight);
+                        Console.WriteLine(player.BoundaryRight);
+            Console.WriteLine(player.BoundaryLeft);
+            if(Canvas.GetBottom(BallEllipse) <= 10 &&
+                (ballPositionX >= player.BoundaryLeft && ballPositionX <= player.BoundaryRight))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public void changeDirection(string siteOfCollision) {
-            // if(siteOfCollision == "top_or_bottom") {
-            Console.WriteLine("test");
+            if(siteOfCollision == "top_or_bottom") {
                 speedY = -speedY;
-            // }
-            // else {
-            //     speedX = + speedX;
-            // }
+            }
+            else {
+                speedX = -speedX;
+            }
         }
     }
 }

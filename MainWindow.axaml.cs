@@ -29,9 +29,9 @@ namespace MyGameApp
             double canvasHeight = 800;
             double canvasWidth = 800;
             // Player und Ball Objekte erstellen
-            player = new Player(playerRectangle, playerSpeed);
             ball = new Ball(ballEllipse, canvasHeight, canvasWidth);
-            StartBallMovement();
+            player = new Player(playerRectangle, playerSpeed);
+            StartBallMovement(player);
 
             // Tasteneingabe registrieren
             this.KeyDown += OnKeyDown;
@@ -54,9 +54,9 @@ namespace MyGameApp
             if (e.Key == Key.Space)  // Bewege nach oben oder führe eine andere Aktion aus
                 ball.startBall();
         }   
-        private async void StartBallMovement()
+        private async void StartBallMovement(Player player)
         {
-            await ball.Move();  // Ball bewegt sich in einer Schleife
+            await ball.Move(player);  // Ball bewegt sich in einer Schleife
         }
     }
 }
