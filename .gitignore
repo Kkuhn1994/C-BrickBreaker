@@ -1,0 +1,21 @@
+# Build artifacts
+bin/
+obj/
+*.dll
+*.pdb
+
+# User-specific files
+*.user
+*.suo
+*.userprefs
+
+# IDE-specific folders
+.vscode/
+.idea/
+
+# Avalonia-specific
+*.axaml.cs
+
+# Temporary files
+*.log
+*.tmp
