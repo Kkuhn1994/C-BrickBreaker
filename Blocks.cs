@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using System.IO;
 
 namespace MyGameApp
 {
@@ -32,8 +33,9 @@ namespace MyGameApp
                 if(xCoord > leftBlockBoundary - 20 && xCoord < rightBlockBoundary)
                 {
                     bool blockWasHit = checkTopBottomCollisionVertical(yCoord, element, bottomBlockBoundary, topBlockBoundary);
-                    if(blockWasHit) {
-                        numbers.Remove(element);
+                    if(blockWasHit) 
+                    {
+                        removeBlock(element);
                         return blockWasHit;
                     }     
                 }
@@ -58,7 +60,7 @@ namespace MyGameApp
                     bool blockWasHit = checkLeftRightCollisionBlockHorizontal(xCoord, element, leftBlockBoundary, rightBlockBoundary);
                     if(blockWasHit) 
                     {
-                        numbers.Remove(element);
+                        removeBlock(element);
                         return blockWasHit;
                     }
                 }
@@ -74,14 +76,12 @@ namespace MyGameApp
             {
                 // Console.Write("bottom collision ");
                 // Console.WriteLine(blockNr);
-                _mainWindow.hideBlock(blockNr);
                 return true;
             }
             if(yCoord <= topBlockBoundary && yCoord >= bottomBlockBoundary)
             {
                 // Console.Write("top collision ");
                 // Console.WriteLine(blockNr);
-                _mainWindow.hideBlock(blockNr);
                 return true;
             }
             return false;
@@ -93,17 +93,67 @@ namespace MyGameApp
             {
                 // Console.Write("left collision ");
                 // Console.WriteLine(blockNr);
-                _mainWindow.hideBlock(blockNr);
                 return true;
             }
             if(xCoord >= rightBlockBoundary && xCoord <= rightBlockBoundary + 20)
             {
                 // Console.Write("right collision ");
                 // Console.WriteLine(blockNr);
-                _mainWindow.hideBlock(blockNr);
                 return true;
             }
             return false;
+        }
+
+        public void loadMap() 
+        {
+            try
+            {
+                string projectDirectory = System.IO.Path.GetFullPath(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", ".."));
+                string fullPath = System.IO.Path.Combine(projectDirectory, "map.txt");
+                Console.WriteLine(fullPath);
+                string[] lines = File.ReadAllLines(fullPath);
+                initBlocks(lines);
+            }
+            catch
+            {
+                Console.WriteLine("File not found");
+            }
+        }
+
+        private void initBlocks(string[] blockLines)
+        {
+            int blockNr = 1;
+            int lineNr = 0;
+
+            foreach(string line in mirrorMapData(blockLines))
+            {
+                blockNr = initLineOfBlocks(lineNr, blockNr, line);
+                lineNr ++;
+            }
+        }
+
+        private int initLineOfBlocks(int lineNr, int blockNr, string line)
+        {
+            foreach (var block in line)
+            {
+                if(block == '0')
+                {
+                    removeBlock(blockNr);
+                }
+                blockNr ++;
+            }
+            return blockNr;
+        }
+
+        private void removeBlock(int blockNr)
+        {
+            _mainWindow.hideBlock(blockNr);
+            numbers.Remove(blockNr);
+        }
+
+        private string[] mirrorMapData(string[] blockLines)
+        {
+            return blockLines.Reverse().ToArray();
         }
     }
 }

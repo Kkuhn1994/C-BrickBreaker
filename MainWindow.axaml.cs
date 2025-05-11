@@ -30,7 +30,7 @@ namespace MyGameApp
 
             if (playerRectangle == null || ballEllipse == null)
             {
-                Console.WriteLine("Die Steuerelemente konnten nicht gefunden werden.");
+                Console.WriteLine("Control Elements could not be found.");
                 return;
             }
             double canvasHeight = 1000;
@@ -39,10 +39,10 @@ namespace MyGameApp
             
             player = new Player(playerRectangle, playerSpeed);
             blocks = new Blocks(this);
+            blocks.loadMap();
             ball = new Ball(ballEllipse, canvasHeight, canvasWidth, player, blocks);
-            
+    
             StartBallMovement();
-
             // Tasteneingabe registrieren
             // this.KeyDown += OnKeyDown;
         }
@@ -52,16 +52,6 @@ namespace MyGameApp
             AvaloniaXamlLoader.Load(this);
         }
 
-        // Bewegungssteuerung für das Rechteck
-        // private void OnKeyDown(object sender, KeyEventArgs e)
-        // {
-        //     if (e.Key == Key.A)  // Bewege nach links
-        //         player.MoveLeft();
-        //     if (e.Key == Key.D)  // Bewege nach rechts
-        //         player.MoveRight();
-        //     if (e.Key == Key.Space)  // Bewege nach oben oder führe eine andere Aktion aus
-        //         ball.startBall();
-        // }
         private void keyEvents() 
         {
             this.KeyBindings.Add(new KeyBinding
@@ -81,7 +71,6 @@ namespace MyGameApp
                 Command = ReactiveCommand.Create(() => ball.startBall()),
                 Gesture = new KeyGesture(Key.Space)
             });
-
         }
 
         private async void StartBallMovement()
@@ -93,7 +82,6 @@ namespace MyGameApp
             }
         }
 
-
         public void hideBlock(int blockNr) 
         {
             // Console.WriteLine(blockNr);
@@ -103,6 +91,5 @@ namespace MyGameApp
                 block.IsVisible = false;
             }
         }
-
     }
 }

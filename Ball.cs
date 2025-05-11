@@ -64,11 +64,11 @@ namespace MyGameApp
 
         private void playerInteraction()
         {
-            Console.WriteLine(player.Movement);
+            // Console.WriteLine(player.Movement);
             if(player.TouchPlayer == true)
             {                    
                 speedX = player.Movement;
-                Console.WriteLine("Player touch");
+                // Console.WriteLine("Player touch");
             }
             else if(playerHitsBall())
             {
@@ -146,7 +146,7 @@ namespace MyGameApp
 
 
 
-        private async void changeDirection(string siteOfCollision) 
+        private void changeDirection(string siteOfCollision) 
         {
             if(siteOfCollision == "top_or_bottom") {
                 speedY = -speedY;
