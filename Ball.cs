@@ -37,36 +37,9 @@ namespace MyGameApp
             while (true)
             {
                 await Task.Delay(20);
-                if(blocks.checkTopBottomCollisionHorizontal(Canvas.GetLeft(BallEllipse),Canvas.GetBottom(BallEllipse)))
-                {
-                    changeDirection("top_or_bottom");
-                }
-                if(blocks.checkLeftRightCollisionVertical(Canvas.GetLeft(BallEllipse),Canvas.GetBottom(BallEllipse)))
-                {
-                    changeDirection("");
-                }
-                if(Canvas.GetBottom(BallEllipse) >= windowHeight)
-                {
-                    player.TouchPlayer = false;
-                    // Console.WriteLine("Top Collision");
-                    changeDirection("top_or_bottom");
-                }
-                if(Canvas.GetLeft(BallEllipse) >= windowWidth | Canvas.GetLeft(BallEllipse) <= 0)
-                {
-                    Console.WriteLine("Wall Collision");
-                    changeDirection("");
-                }
-                if(player.TouchPlayer == true)
-                {                    
-                    speedX = player.Movement;
-                    Console.WriteLine("Player touch");
-                }
-                else if(playerHitsBall())
-                {
-                    // Console.WriteLine("Player Collision");
-                    changeDirection("top_or_bottom");
-                    speedX += player.Movement / 2;
-                }
+                blockHits();
+                wallHits();
+                playerInteraction();
 
                 await Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() =>
                 {
@@ -75,24 +48,9 @@ namespace MyGameApp
                     Canvas.SetBottom(BallEllipse, newTop);
                     Canvas.SetLeft(BallEllipse, newLeft);
                 });
-                if(Canvas.GetBottom(BallEllipse) < -100)
-                {
-                    Console.WriteLine("score");
-                    return ;
-                }
+                if(checkLosePoint()) return;
+
             }
-        }
-
-
-        public bool playerHitsBall() {
-
-            double ballPositionX = Canvas.GetLeft(BallEllipse);
-            if(Canvas.GetBottom(BallEllipse) <= 10 &&
-                (ballPositionX >= player.BoundaryLeft && ballPositionX <= player.BoundaryRight))
-            {
-                return true;
-            }
-            return false;
         }
 
         public void placeNewBall() {
@@ -103,14 +61,97 @@ namespace MyGameApp
             player.TouchPlayer = true;
         }
 
-        public async void changeDirection(string siteOfCollision) {
+        private void playerInteraction()
+        {
+            if(player.TouchPlayer == true)
+            {                    
+                speedX = player.Movement;
+                // Console.WriteLine("Player touch");
+            }
+            else if(playerHitsBall())
+            {
+                // Console.WriteLine("Player Collision");
+                changeDirection("top_or_bottom");
+                speedX += player.Movement / 2;
+            }
+        }
+
+        private void blockHits()
+        {
+            if(blocks.checkTopBottomCollisionHorizontal(Canvas.GetLeft(BallEllipse),Canvas.GetBottom(BallEllipse)))
+            {
+                changeDirection("top_or_bottom");
+            }
+            if(blocks.checkLeftRightCollisionVertical(Canvas.GetLeft(BallEllipse),Canvas.GetBottom(BallEllipse)))
+            {
+                changeDirection("");
+            }
+        }
+
+        private void wallHits()
+        {
+            if(Canvas.GetBottom(BallEllipse) >= windowHeight)
+            {
+                player.TouchPlayer = false;
+                // Console.WriteLine("Top Collision");
+                changeDirection("top_or_bottom");
+            }
+            if(Canvas.GetLeft(BallEllipse) >= windowWidth | Canvas.GetLeft(BallEllipse) <= 0)
+            {
+                Console.WriteLine("Wall Collision");
+                changeDirection("");
+            }
+        }
+
+        private bool checkLosePoint()
+        {
+            if(Canvas.GetBottom(BallEllipse) < -100)
+            {
+                // Console.WriteLine("score");
+                return true;
+            }
+            return false;
+        }
+
+
+        private bool playerHitsBall() 
+        {
+            if(playerHorizontalCollisionCheck() && playerVerticalCollisionCheck())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool playerHorizontalCollisionCheck() 
+        {
+            if(Canvas.GetBottom(BallEllipse) <= 10 && Canvas.GetBottom(BallEllipse) >= 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool playerVerticalCollisionCheck() 
+        {
+            double ballPositionX = Canvas.GetLeft(BallEllipse);
+            if(ballPositionX >= player.BoundaryLeft && ballPositionX <= player.BoundaryRight)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+
+        private async void changeDirection(string siteOfCollision) {
             if(siteOfCollision == "top_or_bottom") {
                 speedY = -speedY;
-                await Task.Delay(20); 
+                // await Task.Delay(20); 
             }
             else {
                 speedX = -speedX;
-                await Task.Delay(20); 
+                // await Task.Delay(20); 
             }
         }
     }

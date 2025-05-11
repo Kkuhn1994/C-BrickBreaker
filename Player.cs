@@ -71,14 +71,14 @@ namespace MyGameApp
         {
             
             if(touchPlayer == true) {
-                Console.WriteLine("short delay");
+                // Console.WriteLine("short delay");
                 Task.Run(async () =>
                 {
                     await Task.Delay(20); 
                     movement = 0;
                 });
             } else {
-                Console.WriteLine("long delay");
+                // Console.WriteLine("long delay");
                 Task.Run(async () =>
                 {
                     await Task.Delay(200); 
