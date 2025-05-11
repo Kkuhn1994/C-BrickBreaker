@@ -22,6 +22,7 @@
 /home/kkuhn/.nuget/packages/avalonia/11.2.7/ref/net8.0/Avalonia.Vulkan.dll
 /home/kkuhn/.nuget/packages/avalonia.win32/11.2.7/lib/net8.0/Avalonia.Win32.dll
 /home/kkuhn/.nuget/packages/avalonia.x11/11.2.7/lib/net8.0/Avalonia.X11.dll
+/home/kkuhn/.nuget/packages/dynamicdata/9.1.2/lib/net8.0/DynamicData.dll
 /home/kkuhn/.nuget/packages/harfbuzzsharp/7.3.0.3/lib/net6.0/HarfBuzzSharp.dll
 /home/kkuhn/.nuget/packages/microcom.runtime/0.11.0/lib/net5.0/MicroCom.Runtime.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/Microsoft.CSharp.dll
@@ -31,7 +32,9 @@
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/Microsoft.Win32.Registry.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/mscorlib.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/netstandard.dll
+/home/kkuhn/.nuget/packages/reactiveui/20.2.45/lib/net8.0/ReactiveUI.dll
 /home/kkuhn/.nuget/packages/skiasharp/2.88.9/lib/net6.0/SkiaSharp.dll
+/home/kkuhn/.nuget/packages/splat/15.3.1/lib/net8.0/Splat.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.AppContext.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.Buffers.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.Collections.Concurrent.dll
@@ -82,7 +85,7 @@
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.IO.FileSystem.Watcher.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.IO.IsolatedStorage.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.IO.MemoryMappedFiles.dll
-/home/kkuhn/.nuget/packages/system.io.pipelines/8.0.0/lib/net8.0/System.IO.Pipelines.dll
+/home/kkuhn/.nuget/packages/system.io.pipelines/9.0.2/lib/net8.0/System.IO.Pipelines.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.IO.Pipes.AccessControl.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.IO.Pipes.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.IO.UnmanagedMemoryStream.dll
@@ -113,6 +116,7 @@
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.Numerics.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.Numerics.Vectors.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.ObjectModel.dll
+/home/kkuhn/.nuget/packages/system.reactive/6.0.1/lib/net6.0/System.Reactive.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.Reflection.DispatchProxy.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.Reflection.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.Reflection.Emit.dll
@@ -160,8 +164,8 @@
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.Text.Encoding.CodePages.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.Text.Encoding.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.Text.Encoding.Extensions.dll
-/home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.Text.Encodings.Web.dll
-/home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.Text.Json.dll
+/home/kkuhn/.nuget/packages/system.text.encodings.web/9.0.2/lib/net8.0/System.Text.Encodings.Web.dll
+/home/kkuhn/.nuget/packages/system.text.json/9.0.2/lib/net8.0/System.Text.Json.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.Text.RegularExpressions.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.Threading.Channels.dll
 /home/kkuhn/.dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.Threading.dll

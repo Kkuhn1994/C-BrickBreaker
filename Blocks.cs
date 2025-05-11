@@ -8,7 +8,8 @@ using System.Linq;
 
 namespace MyGameApp
 {
-        public class Blocks {
+    public class Blocks 
+    {
         private MainWindow _mainWindow;
 
         public Blocks(MainWindow mainWindow)
@@ -21,8 +22,8 @@ namespace MyGameApp
 
         public bool checkTopBottomCollisionHorizontal(double xCoord, double yCoord) {
 
-            foreach(var element in numbers) {
-
+            foreach(var element in numbers) 
+            {
                 double leftBlockBoundary = zeroX + (((element - 1) % 11) * 55);
                 double rightBlockBoundary = zeroX + (((element - 1) % 11) * 55) + 50;
                 double topBlockBoundary = zeroY + ((element / 12) * 25) + 20;
@@ -34,8 +35,7 @@ namespace MyGameApp
                     if(blockWasHit) {
                         numbers.Remove(element);
                         return blockWasHit;
-                    }
-                    
+                    }     
                 }
             }
             return false;
@@ -52,8 +52,8 @@ namespace MyGameApp
 
                 if(yCoord < topBlockBoundary  && yCoord > bottomBlockBoundary)
                 {
-                    Console.WriteLine(element);
-                    Console.WriteLine(xCoord);
+                    // Console.WriteLine(element);
+                    // Console.WriteLine(xCoord);
                     bool blockWasHit = checkLeftRightCollisionBlockHorizontal(xCoord, element, leftBlockBoundary, rightBlockBoundary);
                     if(blockWasHit) {
                         numbers.Remove(element);
@@ -71,15 +71,15 @@ namespace MyGameApp
 
             if(yCoord >= bottomBlockBoundary - 20 && yCoord <= bottomBlockBoundary)
             {
-                Console.Write("top collision ");
-                Console.WriteLine(blockNr);
+                // Console.Write("bottom collision ");
+                // Console.WriteLine(blockNr);
                 _mainWindow.hideBlock(blockNr);
                 return true;
             }
             if(yCoord <= topBlockBoundary && yCoord >= bottomBlockBoundary)
             {
-                Console.Write("bottom collision ");
-                Console.WriteLine(blockNr);
+                // Console.Write("top collision ");
+                // Console.WriteLine(blockNr);
                 _mainWindow.hideBlock(blockNr);
                 return true;
             }
@@ -89,45 +89,20 @@ namespace MyGameApp
         public bool checkLeftRightCollisionBlockHorizontal(double xCoord, int blockNr, double leftBlockBoundary, double rightBlockBoundary) {
             if(leftBlockBoundary - 20 <= xCoord && xCoord <= leftBlockBoundary)
             {
-                Console.Write("left collision ");
-                Console.WriteLine(blockNr);
+                // Console.Write("left collision ");
+                // Console.WriteLine(blockNr);
                 _mainWindow.hideBlock(blockNr);
                 return true;
             }
             if(xCoord >= rightBlockBoundary && xCoord <= rightBlockBoundary + 20)
             {
-                Console.Write("right collision ");
-                Console.WriteLine(blockNr);
+                // Console.Write("right collision ");
+                // Console.WriteLine(blockNr);
                 _mainWindow.hideBlock(blockNr);
                 return true;
             }
             return false;
         }
-
-    
-
-        // private bool hitTopOrBottomBorder(double blockBottom) {
-        //     double ballBottom = Canvas.GetBottom(ball.BallEllipse);
-
-        //     if(ballBottom > blockBottom + 3 | ballBottom < blockBottom + 47)
-        //     {
-        //         return true;
-        //     }
-        //     return false;
-        // }
-
-        // public bool hitBlock(int number) {
-        //     Console.WriteLine(number);
-        //     double coordinateXLeft = zeroX + ((number - 1) * 55);
-        //     double coordinateYBottom = zeroY;
-
-        //     if(hitTopOrBottomBorder(coordinateYBottom))
-        //     {
-
-        //         return true;
-        //     }
-        //     return false;
-        // }
 
     }
 }

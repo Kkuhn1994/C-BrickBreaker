@@ -63,10 +63,11 @@ namespace MyGameApp
 
         private void playerInteraction()
         {
+            Console.WriteLine(player.Movement);
             if(player.TouchPlayer == true)
             {                    
                 speedX = player.Movement;
-                // Console.WriteLine("Player touch");
+                Console.WriteLine("Player touch");
             }
             else if(playerHitsBall())
             {
@@ -98,7 +99,7 @@ namespace MyGameApp
             }
             if(Canvas.GetLeft(BallEllipse) >= windowWidth | Canvas.GetLeft(BallEllipse) <= 0)
             {
-                Console.WriteLine("Wall Collision");
+                // Console.WriteLine("Wall Collision");
                 changeDirection("");
             }
         }

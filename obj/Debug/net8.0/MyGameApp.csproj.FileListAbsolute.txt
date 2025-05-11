@@ -134,3 +134,10 @@
 /home/kkuhn/Desktop/BrickBreaker/obj/Debug/net8.0/MyGameApp.csproj.Up2Date
 /home/kkuhn/Desktop/BrickBreaker/obj/Debug/net8.0/MyGameApp.genruntimeconfig.cache
 /home/kkuhn/Desktop/BrickBreaker/obj/Debug/net8.0/ref/MyGameApp.dll
+/home/kkuhn/Desktop/BrickBreaker/bin/Debug/net8.0/DynamicData.dll
+/home/kkuhn/Desktop/BrickBreaker/bin/Debug/net8.0/ReactiveUI.dll
+/home/kkuhn/Desktop/BrickBreaker/bin/Debug/net8.0/Splat.dll
+/home/kkuhn/Desktop/BrickBreaker/bin/Debug/net8.0/System.Reactive.dll
+/home/kkuhn/Desktop/BrickBreaker/bin/Debug/net8.0/System.Text.Encodings.Web.dll
+/home/kkuhn/Desktop/BrickBreaker/bin/Debug/net8.0/System.Text.Json.dll
+/home/kkuhn/Desktop/BrickBreaker/bin/Debug/net8.0/runtimes/browser/lib/net8.0/System.Text.Encodings.Web.dll

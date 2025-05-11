@@ -5,6 +5,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Controls.Shapes;
 using System;
 using System.Threading.Tasks;
+using ReactiveUI;
 
 class Blocks;
 
@@ -22,6 +23,7 @@ namespace MyGameApp
         public MainWindow()
         {
             InitializeComponent();
+            keyEvents();
             // Steuerelemente im XAML finden
             var playerRectangle = this.FindControl<Rectangle>("PlayerRectangle");
             var ballEllipse = this.FindControl<Ellipse>("Ball");
@@ -42,7 +44,7 @@ namespace MyGameApp
             StartBallMovement();
 
             // Tasteneingabe registrieren
-            this.KeyDown += OnKeyDown;
+            // this.KeyDown += OnKeyDown;
         }
 
         private void InitializeComponent()
@@ -51,14 +53,35 @@ namespace MyGameApp
         }
 
         // Bewegungssteuerung für das Rechteck
-        private void OnKeyDown(object sender, KeyEventArgs e)
+        // private void OnKeyDown(object sender, KeyEventArgs e)
+        // {
+        //     if (e.Key == Key.A)  // Bewege nach links
+        //         player.MoveLeft();
+        //     if (e.Key == Key.D)  // Bewege nach rechts
+        //         player.MoveRight();
+        //     if (e.Key == Key.Space)  // Bewege nach oben oder führe eine andere Aktion aus
+        //         ball.startBall();
+        // }
+        private void keyEvents() 
         {
-            if (e.Key == Key.A)  // Bewege nach links
-                player.MoveLeft();
-            if (e.Key == Key.D)  // Bewege nach rechts
-                player.MoveRight();
-            if (e.Key == Key.Space)  // Bewege nach oben oder führe eine andere Aktion aus
-                ball.startBall();
+            this.KeyBindings.Add(new KeyBinding
+            {
+                Command = ReactiveCommand.Create(() => player.MoveLeft()),
+                Gesture = new KeyGesture(Key.A)
+            });
+
+            this.KeyBindings.Add(new KeyBinding 
+            {
+                Command = ReactiveCommand.Create(() => player.MoveRight()),
+                Gesture = new KeyGesture(Key.D)
+            });
+
+            this.KeyBindings.Add(new KeyBinding
+            {
+                Command = ReactiveCommand.Create(() => ball.startBall()),
+                Gesture = new KeyGesture(Key.Space)
+            });
+
         }
 
         private async void StartBallMovement()
@@ -71,7 +94,7 @@ namespace MyGameApp
 
 
         public void hideBlock(int blockNr) {
-            Console.WriteLine(blockNr);
+            // Console.WriteLine(blockNr);
             var block = this.FindControl<Rectangle>($"Block{blockNr}");
             if (block != null)
             {

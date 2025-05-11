@@ -81,7 +81,7 @@ namespace MyGameApp
                 // Console.WriteLine("long delay");
                 Task.Run(async () =>
                 {
-                    await Task.Delay(200); 
+                    await Task.Delay(1000); 
                     movement = 0;
                 });
             }
