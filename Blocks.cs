@@ -20,8 +20,8 @@ namespace MyGameApp
         private double zeroX = 105;
         private double zeroY = 500;
 
-        public bool checkTopBottomCollisionHorizontal(double xCoord, double yCoord) {
-
+        public bool checkTopBottomCollisionHorizontal(double xCoord, double yCoord) 
+        {
             foreach(var element in numbers) 
             {
                 double leftBlockBoundary = zeroX + (((element - 1) % 11) * 55);
@@ -41,9 +41,10 @@ namespace MyGameApp
             return false;
         }
 
-        public bool checkLeftRightCollisionVertical(double xCoord, double yCoord) {
-
-            foreach(var element in numbers) {
+        public bool checkLeftRightCollisionVertical(double xCoord, double yCoord) 
+        {
+            foreach(var element in numbers) 
+            {
 
                 double leftBlockBoundary = zeroX + (((element - 1) % 11) * 55);
                 double rightBlockBoundary = zeroX + (((element - 1) % 11) * 55) + 50;
@@ -55,7 +56,8 @@ namespace MyGameApp
                     // Console.WriteLine(element);
                     // Console.WriteLine(xCoord);
                     bool blockWasHit = checkLeftRightCollisionBlockHorizontal(xCoord, element, leftBlockBoundary, rightBlockBoundary);
-                    if(blockWasHit) {
+                    if(blockWasHit) 
+                    {
                         numbers.Remove(element);
                         return blockWasHit;
                     }
@@ -66,9 +68,8 @@ namespace MyGameApp
 
 
 
-        public bool checkTopBottomCollisionVertical(double yCoord, int blockNr, double bottomBlockBoundary, double topBlockBoundary) {
-   
-
+        private bool checkTopBottomCollisionVertical(double yCoord, int blockNr, double bottomBlockBoundary, double topBlockBoundary) 
+        {
             if(yCoord >= bottomBlockBoundary - 20 && yCoord <= bottomBlockBoundary)
             {
                 // Console.Write("bottom collision ");
@@ -86,7 +87,8 @@ namespace MyGameApp
             return false;
         }
 
-        public bool checkLeftRightCollisionBlockHorizontal(double xCoord, int blockNr, double leftBlockBoundary, double rightBlockBoundary) {
+        private bool checkLeftRightCollisionBlockHorizontal(double xCoord, int blockNr, double leftBlockBoundary, double rightBlockBoundary) 
+        {
             if(leftBlockBoundary - 20 <= xCoord && xCoord <= leftBlockBoundary)
             {
                 // Console.Write("left collision ");
@@ -103,6 +105,5 @@ namespace MyGameApp
             }
             return false;
         }
-
     }
 }

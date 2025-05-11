@@ -86,14 +86,16 @@ namespace MyGameApp
 
         private async void StartBallMovement()
         {
-            while(score < 3) {
+            while(score < 3) 
+            {
                 await ball.Move();
                 ball.placeNewBall();
             }
         }
 
 
-        public void hideBlock(int blockNr) {
+        public void hideBlock(int blockNr) 
+        {
             // Console.WriteLine(blockNr);
             var block = this.FindControl<Rectangle>($"Block{blockNr}");
             if (block != null)

@@ -64,20 +64,22 @@ namespace MyGameApp
             boundaryLeft += speed;
             boundaryRight += speed;
             ResetMovementWithDelay();
-
         }
 
         public void ResetMovementWithDelay()
         {
             
-            if(touchPlayer == true) {
+            if(touchPlayer == true) 
+            {
                 // Console.WriteLine("short delay");
                 Task.Run(async () =>
                 {
                     await Task.Delay(20); 
                     movement = 0;
                 });
-            } else {
+            } 
+            else 
+            {
                 // Console.WriteLine("long delay");
                 Task.Run(async () =>
                 {

@@ -27,7 +27,8 @@ namespace MyGameApp
             speedY = 0;
         }
 
-        public void startBall() {
+        public void startBall() 
+        {
             player.TouchPlayer = false;
             speedY = 5;
         }
@@ -49,11 +50,11 @@ namespace MyGameApp
                     Canvas.SetLeft(BallEllipse, newLeft);
                 });
                 if(checkLosePoint()) return;
-
             }
         }
 
-        public void placeNewBall() {
+        public void placeNewBall() 
+        {
             Canvas.SetBottom(BallEllipse,20);
             Canvas.SetLeft(BallEllipse, (player.BoundaryRight + player.BoundaryLeft) / 2);
             speedY = 0;
@@ -145,7 +146,8 @@ namespace MyGameApp
 
 
 
-        private async void changeDirection(string siteOfCollision) {
+        private async void changeDirection(string siteOfCollision) 
+        {
             if(siteOfCollision == "top_or_bottom") {
                 speedY = -speedY;
                 // await Task.Delay(20); 
