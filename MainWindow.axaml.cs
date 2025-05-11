@@ -13,12 +13,23 @@ namespace MyGameApp
 {
     public partial class MainWindow : Window
     {
-        private int score = 0;
+        private int _score = 0;
         private Player player;
         private Ball ball;
         private Blocks blocks;
+        // private TextBlock ScoreText;
         private double playerSpeed = 20;
         private double ballSpeed = 2;
+
+        public int Score
+        {
+            get => _score;
+            set
+            {
+                _score = value;
+                UpdateScoreText();
+            }
+        }
 
         public MainWindow()
         {
@@ -27,6 +38,7 @@ namespace MyGameApp
             // Steuerelemente im XAML finden
             var playerRectangle = this.FindControl<Rectangle>("PlayerRectangle");
             var ballEllipse = this.FindControl<Ellipse>("Ball");
+            ScoreText = this.FindControl<TextBlock>("ScoreText");
 
             if (playerRectangle == null || ballEllipse == null)
             {
@@ -40,11 +52,9 @@ namespace MyGameApp
             player = new Player(playerRectangle, playerSpeed);
             blocks = new Blocks(this);
             blocks.loadMap();
-            ball = new Ball(ballEllipse, canvasHeight, canvasWidth, player, blocks);
+            ball = new Ball(ballEllipse, canvasHeight, canvasWidth, player, blocks, this);
     
             StartBallMovement();
-            // Tasteneingabe registrieren
-            // this.KeyDown += OnKeyDown;
         }
 
         private void InitializeComponent()
@@ -75,11 +85,17 @@ namespace MyGameApp
 
         private async void StartBallMovement()
         {
-            while(score < 3) 
+            while(_score < 3) 
             {
                 await ball.Move();
                 ball.placeNewBall();
+                Score ++;
             }
+        }
+
+        private void UpdateScoreText()
+        {
+            ScoreText.Text = $"Life Lost: {Score}";
         }
 
         public void hideBlock(int blockNr) 

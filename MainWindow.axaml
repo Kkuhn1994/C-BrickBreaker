@@ -11,18 +11,25 @@
 
     <Grid>
         <Canvas x:Name="GameCanvas" Margin="0,50,0,0">
+            <TextBlock x:Name="ScoreText" 
+                    Text="Score: 0"
+                    Foreground="White"
+                    FontSize="24"
+                    FontWeight="Bold"
+                    Canvas.Left="350"
+                    Canvas.Top="10"/>
             <Rectangle x:Name="PlayerRectangle"
-                       Width="200"
-                       Height="20"
-                       Fill="Red"
-                       Canvas.Left="0"
-                       Canvas.Bottom="0"/>
+                    Width="200"
+                    Height="20"
+                    Fill="Red"
+                    Canvas.Left="0"
+                    Canvas.Bottom="0"/>
             <Ellipse x:Name="Ball"
-                     Width="20"
-                     Height="20"
-                     Fill="Green"
-                     Canvas.Left="100"
-                     Canvas.Bottom="20"/>
+                    Width="20"
+                    Height="20"
+                    Fill="Green"
+                    Canvas.Left="100"
+                    Canvas.Bottom="20"/>
             <Rectangle x:Name="Block1" Width="50" Height="20" Fill="Blue" Canvas.Left="105" Canvas.Bottom="500"/>
             <Rectangle x:Name="Block2" Width="50" Height="20" Fill="Blue" Canvas.Left="160" Canvas.Bottom="500"/>
             <Rectangle x:Name="Block3" Width="50" Height="20" Fill="Blue" Canvas.Left="215" Canvas.Bottom="500"/>

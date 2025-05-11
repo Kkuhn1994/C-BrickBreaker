@@ -21,6 +21,14 @@ namespace MyGameApp
         private double zeroX = 105;
         private double zeroY = 500;
 
+        public IEnumerable<int> Numbers
+        {
+            get
+            {
+                return new List<int>(numbers);
+            }
+        }
+
         public bool checkTopBottomCollisionHorizontal(double xCoord, double yCoord) 
         {
             foreach(var element in numbers) 
@@ -68,8 +76,6 @@ namespace MyGameApp
             return false;
         }
 
-
-
         private bool checkTopBottomCollisionVertical(double yCoord, int blockNr, double bottomBlockBoundary, double topBlockBoundary) 
         {
             if(yCoord >= bottomBlockBoundary - 20 && yCoord <= bottomBlockBoundary)
@@ -110,7 +116,6 @@ namespace MyGameApp
             {
                 string projectDirectory = System.IO.Path.GetFullPath(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", ".."));
                 string fullPath = System.IO.Path.Combine(projectDirectory, "map.txt");
-                Console.WriteLine(fullPath);
                 string[] lines = File.ReadAllLines(fullPath);
                 initBlocks(lines);
             }
