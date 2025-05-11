@@ -2,7 +2,9 @@ using Avalonia.Controls.Shapes;
 using Avalonia.Controls;
 using Avalonia;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace MyGameApp
 {
@@ -13,28 +15,89 @@ namespace MyGameApp
         {
             _mainWindow = mainWindow;
         }
-        private int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
-        private bool[] numbersHit = new bool[13]; // Automatisch mit false initialisiert
-        private double zeroX = 50;
+        private List<int> numbers = Enumerable.Range(1, 33).ToList();  
+        private double zeroX = 105;
         private double zeroY = 500;
 
+        public bool checkTopBottomCollisionHorizontal(double xCoord, double yCoord) {
 
-        public bool checkTopBottomCollision(double xCoord, double yCoord) {
             foreach(var element in numbers) {
-                double leftBlockBoundary = zeroX + ((element - 1) * 55);
-                double rightBlockBoundary = zeroX + ((element - 1) * 55) + 50;
-                if(xCoord > leftBlockBoundary && xCoord < rightBlockBoundary)
+
+                double leftBlockBoundary = zeroX + (((element - 1) % 11) * 55);
+                double rightBlockBoundary = zeroX + (((element - 1) % 11) * 55) + 50;
+                double topBlockBoundary = zeroY + ((element / 12) * 25) + 20;
+                double bottomBlockBoundary = zeroY + ((element / 12) * 25);
+
+                if(xCoord > leftBlockBoundary - 20 && xCoord < rightBlockBoundary)
                 {
-                    return checkTopBottomCollisionBlock(yCoord, element);
+                    bool blockWasHit = checkTopBottomCollisionVertical(yCoord, element, bottomBlockBoundary, topBlockBoundary);
+                    if(blockWasHit) {
+                        numbers.Remove(element);
+                        return blockWasHit;
+                    }
+                    
                 }
             }
             return false;
         }
 
-        public bool checkTopBottomCollisionBlock(double yCoord, int blockNr) {
+        public bool checkLeftRightCollisionVertical(double xCoord, double yCoord) {
+
+            foreach(var element in numbers) {
+
+                double leftBlockBoundary = zeroX + (((element - 1) % 11) * 55);
+                double rightBlockBoundary = zeroX + (((element - 1) % 11) * 55) + 50;
+                double topBlockBoundary = zeroY + ((element / 12) * 25) + 20;
+                double bottomBlockBoundary = zeroY + ((element / 12) * 25);
+
+                if(yCoord < topBlockBoundary  && yCoord > bottomBlockBoundary)
+                {
+                    Console.WriteLine(element);
+                    Console.WriteLine(xCoord);
+                    bool blockWasHit = checkLeftRightCollisionBlockHorizontal(xCoord, element, leftBlockBoundary, rightBlockBoundary);
+                    if(blockWasHit) {
+                        numbers.Remove(element);
+                        return blockWasHit;
+                    }
+                }
+            }
+            return false;
+        }
+
+
+
+        public bool checkTopBottomCollisionVertical(double yCoord, int blockNr, double bottomBlockBoundary, double topBlockBoundary) {
    
-            if(yCoord >= 480 && yCoord <= 500)
+
+            if(yCoord >= bottomBlockBoundary - 20 && yCoord <= bottomBlockBoundary)
             {
+                Console.Write("top collision ");
+                Console.WriteLine(blockNr);
+                _mainWindow.hideBlock(blockNr);
+                return true;
+            }
+            if(yCoord <= topBlockBoundary && yCoord >= bottomBlockBoundary)
+            {
+                Console.Write("bottom collision ");
+                Console.WriteLine(blockNr);
+                _mainWindow.hideBlock(blockNr);
+                return true;
+            }
+            return false;
+        }
+
+        public bool checkLeftRightCollisionBlockHorizontal(double xCoord, int blockNr, double leftBlockBoundary, double rightBlockBoundary) {
+            if(leftBlockBoundary - 20 <= xCoord && xCoord <= leftBlockBoundary)
+            {
+                Console.Write("left collision ");
+                Console.WriteLine(blockNr);
+                _mainWindow.hideBlock(blockNr);
+                return true;
+            }
+            if(xCoord >= rightBlockBoundary && xCoord <= rightBlockBoundary + 20)
+            {
+                Console.Write("right collision ");
+                Console.WriteLine(blockNr);
                 _mainWindow.hideBlock(blockNr);
                 return true;
             }

@@ -71,6 +71,7 @@ namespace MyGameApp
 
 
         public void hideBlock(int blockNr) {
+            Console.WriteLine(blockNr);
             var block = this.FindControl<Rectangle>($"Block{blockNr}");
             if (block != null)
             {

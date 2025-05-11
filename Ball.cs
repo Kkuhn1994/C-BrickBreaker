@@ -37,14 +37,18 @@ namespace MyGameApp
             while (true)
             {
                 await Task.Delay(20);
-                if(blocks.checkTopBottomCollision(Canvas.GetLeft(BallEllipse),Canvas.GetBottom(BallEllipse)))
+                if(blocks.checkTopBottomCollisionHorizontal(Canvas.GetLeft(BallEllipse),Canvas.GetBottom(BallEllipse)))
                 {
                     changeDirection("top_or_bottom");
+                }
+                if(blocks.checkLeftRightCollisionVertical(Canvas.GetLeft(BallEllipse),Canvas.GetBottom(BallEllipse)))
+                {
+                    changeDirection("");
                 }
                 if(Canvas.GetBottom(BallEllipse) >= windowHeight)
                 {
                     player.TouchPlayer = false;
-                    Console.WriteLine("Top Collision");
+                    // Console.WriteLine("Top Collision");
                     changeDirection("top_or_bottom");
                 }
                 if(Canvas.GetLeft(BallEllipse) >= windowWidth | Canvas.GetLeft(BallEllipse) <= 0)
@@ -59,7 +63,7 @@ namespace MyGameApp
                 }
                 else if(playerHitsBall())
                 {
-                    Console.WriteLine("Player Collision");
+                    // Console.WriteLine("Player Collision");
                     changeDirection("top_or_bottom");
                     speedX += player.Movement / 2;
                 }
