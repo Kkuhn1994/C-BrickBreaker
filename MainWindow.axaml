@@ -5,23 +5,37 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="MyGameApp.MainWindow"
         Title="MyGameApp"
-        Background="black">
+        Background="black"
+        Width="800"
+        Height="1000">
 
-    <Canvas x:Name="GameCanvas">
-
-        <Rectangle x:Name="PlayerRectangle"
-                   Width="200"
-                   Height="20"
-                   Fill="Red"
-                   Canvas.Left="0"
-                   Canvas.Bottom="0"/>
-
-
-        <Ellipse x:Name="Ball"
-                 Width="20"
-                 Height="20"
-                 Fill="Green"
-                 Canvas.Left="100"
-                 Canvas.Bottom="20"/>
-    </Canvas>
+    <Grid>
+        <Canvas x:Name="GameCanvas" Margin="0,50,0,0">
+            <Rectangle x:Name="PlayerRectangle"
+                       Width="200"
+                       Height="20"
+                       Fill="Red"
+                       Canvas.Left="0"
+                       Canvas.Bottom="0"/>
+            <Ellipse x:Name="Ball"
+                     Width="20"
+                     Height="20"
+                     Fill="Green"
+                     Canvas.Left="100"
+                     Canvas.Bottom="20"/>
+            <Rectangle x:Name="Block1" Width="50" Height="20" Fill="Blue" Canvas.Left="50" Canvas.Bottom="500"/>
+            <Rectangle x:Name="Block2" Width="50" Height="20" Fill="Blue" Canvas.Left="105" Canvas.Bottom="500"/>
+            <Rectangle x:Name="Block3" Width="50" Height="20" Fill="Blue" Canvas.Left="160" Canvas.Bottom="500"/>
+            <Rectangle x:Name="Block4" Width="50" Height="20" Fill="Blue" Canvas.Left="215" Canvas.Bottom="500"/>
+            <Rectangle x:Name="Block5" Width="50" Height="20" Fill="Blue" Canvas.Left="270" Canvas.Bottom="500"/>
+            <Rectangle x:Name="Block6" Width="50" Height="20" Fill="Blue" Canvas.Left="325" Canvas.Bottom="500"/>
+            <Rectangle x:Name="Block7" Width="50" Height="20" Fill="Blue" Canvas.Left="380" Canvas.Bottom="500"/>
+            <Rectangle x:Name="Block8" Width="50" Height="20" Fill="Blue" Canvas.Left="435" Canvas.Bottom="500"/>
+            <Rectangle x:Name="Block9" Width="50" Height="20" Fill="Blue" Canvas.Left="490" Canvas.Bottom="500"/>
+            <Rectangle x:Name="Block10" Width="50" Height="20" Fill="Blue" Canvas.Left="545" Canvas.Bottom="500"/>
+            <Rectangle x:Name="Block11" Width="50" Height="20" Fill="Blue" Canvas.Left="600" Canvas.Bottom="500"/>
+            <Rectangle x:Name="Block12" Width="50" Height="20" Fill="Blue" Canvas.Left="655" Canvas.Bottom="500"/>
+            <Rectangle x:Name="Block13" Width="50" Height="20" Fill="Blue" Canvas.Left="710" Canvas.Bottom="500"/>
+        </Canvas>
+    </Grid>
 </Window>

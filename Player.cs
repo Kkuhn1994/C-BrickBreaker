@@ -48,7 +48,7 @@ namespace MyGameApp
             boundaryRight = 200;
         }
 
-        public void MoveLeft()
+        public async void MoveLeft ()
         {
             movement= -speed;
             Canvas.SetLeft(PlayerRectangle, Canvas.GetLeft(PlayerRectangle) - speed);
@@ -57,29 +57,31 @@ namespace MyGameApp
             ResetMovementWithDelay();
         }
 
-        public void MoveRight()
+        public async void MoveRight ()
         {
             movement = speed;
             Canvas.SetLeft(PlayerRectangle, Canvas.GetLeft(PlayerRectangle) + speed);
             boundaryLeft += speed;
             boundaryRight += speed;
             ResetMovementWithDelay();
+
         }
 
         public void ResetMovementWithDelay()
         {
             
             if(touchPlayer == true) {
+                Console.WriteLine("short delay");
                 Task.Run(async () =>
                 {
-                    await Task.Delay(5); 
+                    await Task.Delay(20); 
                     movement = 0;
                 });
             } else {
                 Console.WriteLine("long delay");
                 Task.Run(async () =>
                 {
-                    await Task.Delay(100); 
+                    await Task.Delay(200); 
                     movement = 0;
                 });
             }

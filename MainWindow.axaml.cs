@@ -4,14 +4,19 @@ using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using Avalonia.Controls.Shapes;
 using System;
+using System.Threading.Tasks;
+
+class Blocks;
 
 namespace MyGameApp
 {
     public partial class MainWindow : Window
     {
+        private int score = 0;
         private Player player;
         private Ball ball;
-        private double playerSpeed = 10;
+        private Blocks blocks;
+        private double playerSpeed = 20;
         private double ballSpeed = 2;
 
         public MainWindow()
@@ -26,19 +31,19 @@ namespace MyGameApp
                 Console.WriteLine("Die Steuerelemente konnten nicht gefunden werden.");
                 return;
             }
-            double canvasHeight = 800;
+            double canvasHeight = 1000;
             double canvasWidth = 800;
             // Player und Ball Objekte erstellen
             
             player = new Player(playerRectangle, playerSpeed);
-            ball = new Ball(ballEllipse, canvasHeight, canvasWidth, player);
+            blocks = new Blocks(this);
+            ball = new Ball(ballEllipse, canvasHeight, canvasWidth, player, blocks);
+            
             StartBallMovement();
 
             // Tasteneingabe registrieren
             this.KeyDown += OnKeyDown;
         }
-
-
 
         private void InitializeComponent()
         {
@@ -54,10 +59,24 @@ namespace MyGameApp
                 player.MoveRight();
             if (e.Key == Key.Space)  // Bewege nach oben oder führe eine andere Aktion aus
                 ball.startBall();
-        }   
+        }
+
         private async void StartBallMovement()
         {
-            await ball.Move();  // Ball bewegt sich in einer Schleife
+            while(score < 3) {
+                await ball.Move();
+                ball.placeNewBall();
+            }
         }
+
+
+        public void hideBlock(int blockNr) {
+            var block = this.FindControl<Rectangle>($"Block{blockNr}");
+            if (block != null)
+            {
+                block.IsVisible = false;
+            }
+        }
+
     }
 }
