@@ -39,7 +39,6 @@ namespace MyGameApp
             var playerRectangle = this.FindControl<Rectangle>("PlayerRectangle");
             var ballEllipse = this.FindControl<Ellipse>("Ball");
             ScoreText = this.FindControl<TextBlock>("ScoreText");
-
             if (playerRectangle == null || ballEllipse == null)
             {
                 Console.WriteLine("Control Elements could not be found.");
@@ -96,6 +95,22 @@ namespace MyGameApp
         private void UpdateScoreText()
         {
             ScoreText.Text = $"Life Lost: {Score}";
+        }
+
+        public void ShowWinPopup()
+        {
+            if (this.FindControl<Canvas>("GameCanvas") is { } gameCanvas)
+            {
+                var popup = new WinPopup();
+                
+                double canvasWidth = gameCanvas.Bounds.Width > 0 ? gameCanvas.Bounds.Width : 800;
+                double canvasHeight = gameCanvas.Bounds.Height > 0 ? gameCanvas.Bounds.Height : 600;
+                
+                Canvas.SetLeft(popup, (canvasWidth - 200) / 2);
+                Canvas.SetBottom(popup, (canvasHeight) / 2 + 100);
+                
+                gameCanvas.Children.Add(popup);
+            }
         }
 
         public void hideBlock(int blockNr) 

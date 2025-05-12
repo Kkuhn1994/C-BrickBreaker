@@ -53,7 +53,7 @@ namespace MyGameApp
                     Canvas.SetLeft(BallEllipse, newLeft);
                 });
                 if(checkLosePoint()) return;
-                checkWin();
+                await checkWin();
             }
         }
 
@@ -119,10 +119,11 @@ namespace MyGameApp
             return false;
         }
 
-        private async void checkWin()
+        private async Task checkWin()
         {
             if(!_blocks.Numbers.Any())
             {
+                _mainWindow.ShowWinPopup();
                 Console.WriteLine("Win");
                 await Task.Delay(3000);
                 Environment.Exit(0);
