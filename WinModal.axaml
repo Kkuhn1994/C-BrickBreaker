@@ -1,12 +1,38 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="MyGameApp.WinPopup">
-    <Border Background="#AA000000" 
+             
+    <Border Background="#AA000000"
             CornerRadius="10"
-            Padding="40">
+            Padding="40"
+            BorderBrush="Gold"
+            BorderThickness="4"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+        <Grid RowDefinitions="Auto,Auto,Auto">
             <TextBlock Text="WIN!" 
-                  FontSize="48"
-                  FontWeight="Bold"
-                  Foreground="Gold"/>
+                       FontSize="48"
+                       FontWeight="Bold"
+                       Foreground="Gold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Grid.Row="0"/>
+            
+            <Button x:Name="RestartButton"
+                    Content="Nochmal spielen"
+                    Width="200"
+                    HorizontalAlignment="Center"
+                    Foreground="Gold"
+                    Grid.Row="1"
+                    Click="OnRestartClicked"/>
+
+            <Button x:Name="ExitButton"
+                    Content="Beenden"
+                    Width="200"
+                    HorizontalAlignment="Center"
+                    Foreground="Gold"
+                    Grid.Row="2"
+                    Click="OnExitClicked"/>
+        </Grid>
     </Border>
 </UserControl>

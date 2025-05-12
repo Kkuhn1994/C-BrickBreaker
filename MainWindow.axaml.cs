@@ -97,19 +97,17 @@ namespace MyGameApp
             ScoreText.Text = $"Life Lost: {Score}";
         }
 
-        public void ShowWinPopup()
+        public async Task ShowWinMenue()
         {
             if (this.FindControl<Canvas>("GameCanvas") is { } gameCanvas)
             {
-                var popup = new WinPopup();
-                
+                var popup = new WinPopup();   
                 double canvasWidth = gameCanvas.Bounds.Width > 0 ? gameCanvas.Bounds.Width : 800;
                 double canvasHeight = gameCanvas.Bounds.Height > 0 ? gameCanvas.Bounds.Height : 600;
-                
-                Canvas.SetLeft(popup, (canvasWidth - 200) / 2);
-                Canvas.SetBottom(popup, (canvasHeight) / 2 + 100);
-                
+                Canvas.SetLeft(popup, (canvasWidth - 300) / 2);
+                Canvas.SetBottom(popup, (canvasHeight) / 2 + 100);   
                 gameCanvas.Children.Add(popup);
+                await popup.menueLoop();
             }
         }
 

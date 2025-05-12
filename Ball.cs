@@ -123,10 +123,7 @@ namespace MyGameApp
         {
             if(!_blocks.Numbers.Any())
             {
-                _mainWindow.ShowWinPopup();
-                Console.WriteLine("Win");
-                await Task.Delay(3000);
-                Environment.Exit(0);
+                await _mainWindow.ShowWinMenue();
             }
         }
 
