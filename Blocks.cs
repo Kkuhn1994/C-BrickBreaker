@@ -23,9 +23,11 @@ namespace MyGameApp
 
         public IEnumerable<int> Numbers
         {
-            get
+            get => numbers;
+            set
             {
-                return new List<int>(numbers);
+                if (value != null)
+                    numbers = new List<int>(value);
             }
         }
 
@@ -141,6 +143,7 @@ namespace MyGameApp
         {
             foreach (var block in line)
             {
+                _mainWindow.resetBlock(blockNr);
                 if(block == '0')
                 {
                     removeBlock(blockNr);

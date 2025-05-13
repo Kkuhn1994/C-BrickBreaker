@@ -82,11 +82,14 @@ namespace MyGameApp
             });
         }
 
-        private async void StartBallMovement()
+        public async void StartBallMovement()
         {
             while(_score < 3) 
             {
-                await ball.Move();
+                if(await ball.Move())
+                {
+                    return;
+                }
                 ball.placeNewBall();
                 Score ++;
             }
@@ -97,7 +100,7 @@ namespace MyGameApp
             ScoreText.Text = $"Life Lost: {Score}";
         }
 
-        public async Task ShowWinMenue()
+        public async Task<int> ShowWinMenue()
         {
             if (this.FindControl<Canvas>("GameCanvas") is { } gameCanvas)
             {
@@ -107,8 +110,11 @@ namespace MyGameApp
                 Canvas.SetLeft(popup, (canvasWidth - 300) / 2);
                 Canvas.SetBottom(popup, (canvasHeight) / 2 + 100);   
                 gameCanvas.Children.Add(popup);
-                await popup.menueLoop();
+                int menueOptionPressed = await popup.menueLoop();
+                gameCanvas.Children.Remove(popup);
+                return menueOptionPressed;         
             }
+            return 0;
         }
 
         public void hideBlock(int blockNr) 
@@ -118,6 +124,16 @@ namespace MyGameApp
             if (block != null)
             {
                 block.IsVisible = false;
+            }
+        }
+
+        public void resetBlock(int blockNr) 
+        {
+            // Console.WriteLine(blockNr);
+            var block = this.FindControl<Rectangle>($"Block{blockNr}");
+            if (block != null)
+            {
+                block.IsVisible = true;
             }
         }
     }

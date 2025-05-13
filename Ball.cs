@@ -36,7 +36,7 @@ namespace MyGameApp
             speedY = 5;
         }
 
-        public async Task Move()
+        public async Task<bool> Move()
         {
             while (true)
             {
@@ -52,9 +52,17 @@ namespace MyGameApp
                     Canvas.SetBottom(BallEllipse, newTop);
                     Canvas.SetLeft(BallEllipse, newLeft);
                 });
-                if(checkLosePoint()) return;
-                await checkWin();
+                if(checkLosePoint()) 
+                {
+                    return false;
+                }
+                bool isWin = await checkWin();
+                if(isWin)
+                {
+                    return isWin;
+                }
             }
+            return false;
         }
 
         public void placeNewBall() 
@@ -119,12 +127,24 @@ namespace MyGameApp
             return false;
         }
 
-        private async Task checkWin()
+        private async Task<bool> checkWin()
         {
             if(!_blocks.Numbers.Any())
             {
-                await _mainWindow.ShowWinMenue();
+                int menueOptionPressed = await _mainWindow.ShowWinMenue();
+                restartGame(menueOptionPressed);
+                return true;
             }
+            return false;
+        }
+
+        private void restartGame(int menueOptionPressed)
+        {
+            _mainWindow.Score = 0;
+            _blocks.Numbers = Enumerable.Range(1, 33).ToList(); 
+            _blocks.loadMap();
+            _mainWindow.StartBallMovement();
+            placeNewBall();
         }
 
 
